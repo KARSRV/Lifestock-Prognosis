@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VetPrognosis</title>
+    <style>
+      html,
+      body {
+        background: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        color: #52b1ff;
+      }
+
+      h1 {
+        font-size: 4rem;
+        color: rgb(255, 123, 0);
+        text-shadow: 0 0 5px rgb(255, 123, 0), 0 0 15px #25284d,
+          0 0 15px rgba(19, 74, 254, 0.25);
+        margin-bottom: 2rem;
+      }
+
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: white;
+        background-color: rgb(255, 123, 0);
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold; /* bold text */
+        transition: background-color 0.3s ease, opacity 3s ease;
+        opacity: 0; /* start transparent */
+        animation: fadeIn 3s forwards; /* fade-in animation lasts 3 seconds */
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes pop {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .letter {
+        opacity: 0;
+        animation: fadeInLetter 0.3s forwards;
+      }
+
+      /* Each letter uses inline style for delay */
+      @keyframes fadeInLetter {
+        to {
+          opacity: 1;
+        }
+      }
+
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: white;
+        background-color: rgb(255, 123, 0);
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        opacity: 0; /* start hidden */
+        animation: fadeInButton 1s forwards;
+        animation-delay: 2.1s; /* delay to match letters animation */
+        transition: background-color 0.3s ease;
+      }
+
+      @keyframes fadeInButton {
+        to {
+          opacity: 1;
+        }
+      }
+
+      a:hover {
+        background-color: darkorange;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>
+      <span class="letter" style="animation-delay: 0s">L</span>
+      <span class="letter" style="animation-delay: 0.1s">i</span>
+      <span class="letter" style="animation-delay: 0.2s">f</span>
+      <span class="letter" style="animation-delay: 0.3s">e</span>
+      <span class="letter" style="animation-delay: 0.4s">s</span>
+      <span class="letter" style="animation-delay: 0.5s">t</span>
+      <span class="letter" style="animation-delay: 0.6s">o</span>
+      <span class="letter" style="animation-delay: 0.7s">c</span>
+      <span class="letter" style="animation-delay: 0.8s">k</span>
+      <span class="letter" style="animation-delay: 0.9s"> </span>
+      <span class="letter" style="animation-delay: 1s">P</span>
+      <span class="letter" style="animation-delay: 1.1s">r</span>
+      <span class="letter" style="animation-delay: 1.2s">o</span>
+      <span class="letter" style="animation-delay: 1.3s">g</span>
+      <span class="letter" style="animation-delay: 1.4s">n</span>
+      <span class="letter" style="animation-delay: 1.5s">o</span>
+      <span class="letter" style="animation-delay: 1.6s">s</span>
+      <span class="letter" style="animation-delay: 1.7s">i</span>
+      <span class="letter" style="animation-delay: 1.8s">s</span>
+    </h1>
+
+    <a href="{% url 'symptom_check' %}" class="symptom-checker-button"
+      >Symptom Checker</a
+    >
+
+    <script>
+      // Animate letters sequentially
+      const letters = document.querySelectorAll(".letter");
+      letters.forEach((letter, idx) => {
+        letter.style.animationDelay = `${idx * 0.1}s`;
+      });
+    </script>
+  </body>
+</html>

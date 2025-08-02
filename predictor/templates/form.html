@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Select Symptoms</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      h2 {
+        text-align: center;
+        margin-top: 2rem;
+        font-family: "Poppins", Arial, sans-serif;
+        font-weight: 600;
+        text-shadow: 0 0 4px rgb(255, 255, 255);
+      }
+      body {
+        background-color: black;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: white;
+      }
+
+      .navbar {
+        background-color: rgb(255, 123, 0);
+        padding: 1rem;
+        text-align: left;
+      }
+
+      .navbar a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.2rem;
+        font-family: "Poppins", Arial, sans-serif; /* apply Poppins here */
+      }
+
+      h2 {
+        text-align: center;
+        margin-top: 2rem;
+        font-family: "Poppins", Arial, sans-serif; /* apply Poppins here */
+        font-weight: 600;
+      }
+
+      form {
+        width: 60%;
+        margin: 2rem auto;
+        padding: 1.5rem;
+        background-color: #111;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(255, 123, 0, 0.3);
+      }
+
+      label {
+        font-weight: bold;
+        color: white;
+        display: block;
+        padding-bottom: 6px;
+      }
+
+      input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #222;
+        color: white;
+      }
+
+      .custom-checkbox {
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #111;
+        transition: box-shadow 0.3s ease;
+        cursor: pointer;
+        user-select: none;
+        color: white;
+        box-shadow: 0 4px 6px rgba(255, 123, 0, 0.15);
+      }
+
+      .custom-checkbox span {
+        font-weight: normal;
+        color: white;
+      }
+
+      .custom-checkbox input[type="checkbox"] {
+        transform: scale(1.2);
+        cursor: pointer;
+        margin: 0;
+        accent-color: orange;
+      }
+
+      label.custom-checkbox:has(input[type="checkbox"]:checked) {
+        box-shadow: 0 0 8px 2px orange;
+        background-color: #222;
+      }
+
+      button {
+        background-color: orange;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        display: block;
+        margin: 20px auto 0;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: darkorange;
+      }
+
+      label.custom-checkbox.glow {
+        box-shadow: 0 0 8px 2px orange;
+        background-color: #222;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="/">Home</a>
+    </div>
+
+    <h2>SELECT SYMPTOMS</h2>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <label for="age">Age:</label>
+      <input type="number" name="age" id="age" step="0.1" required /><br />
+
+      <label for="temperature">Temperature:</label>
+      <input
+        type="number"
+        name="temperature"
+        id="temperature"
+        step="0.1"
+        required
+      /><br />
+
+      {% for checkbox in form.symptoms %}
+      <label class="custom-checkbox" for="{{ checkbox.id_for_label }}">
+        <span>{{ checkbox.choice_label }}</span>
+        {{ checkbox.tag }}
+      </label>
+      {% endfor %}
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      document.querySelectorAll("label.custom-checkbox").forEach((label) => {
+        const checkbox = label.querySelector('input[type="checkbox"]');
+        if (!checkbox) return;
+
+        function updateGlow() {
+          if (checkbox.checked) {
+            label.classList.add("glow");
+          } else {
+            label.classList.remove("glow");
+          }
+        }
+        checkbox.addEventListener("change", updateGlow);
+        updateGlow();
+      });
+    </script>
+  </body>
+</html>
