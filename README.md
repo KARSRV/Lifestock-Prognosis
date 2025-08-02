@@ -63,11 +63,3 @@ The backend uses a voting ensemble of the following models trained on a labeled 
 - Form: Users enter values for all symptoms and temperature/age
 - Output: Predicted disease label with probability score
 
----
-
-## ⚙️ How to Run Locally
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/livestock-disease-predictor.git
-   cd livestock-disease-predictor
